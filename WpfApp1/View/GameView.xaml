@@ -5,12 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.View"
              mc:Ignorable="d" 
-             Background="Gray"
+             Background="#AAAAAA"
+             FontSize="25px"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="0.7*"></RowDefinition>
+            <RowDefinition Height="0.7*">
+                
+            </RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="0.7*"></RowDefinition>
@@ -23,27 +26,66 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0"
+        <TextBlock Grid.Row="2"
                    Grid.Column="1"
                    Grid.ColumnSpan="3"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="32px"
-                   >Wygrał gracz A</TextBlock>
+                   Text="{Binding Result, Mode=TwoWay}"
+                   ></TextBlock>
         <TextBlock Grid.Column="2"
                    Grid.Row="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center">Wynik</TextBlock>
+        <TextBlock Grid.Column="1"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Text="{Binding Player_A_points}"></TextBlock>
+        <TextBlock Grid.Column="3"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Text="{Binding Player_B_points}"></TextBlock>
         <TextBlock Grid.Row="4"
                    Grid.Column="0"
+                   Grid.RowSpan="2"
                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">Kamien</TextBlock>
+                    HorizontalAlignment="Center"
+                   FontSize="32px"
+                   Text="{Binding Player_A}"></TextBlock>
         <TextBlock Grid.Row="4"
                    Grid.Column="4"
+                   Grid.RowSpan="2"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center">Papier</TextBlock>
+                   HorizontalAlignment="Center"
+                   FontSize="32px"
+                   Text="{Binding Player_B}"></TextBlock>
         <Button Grid.Column="2"
-                Grid.Row="4">Zagraj jeszcze raz</Button>
+                Grid.Row="4"
+                Command="{Binding Play}">Zagraj</Button>
+        <Image Grid.Column="0"
+               Grid.Row="1"
+               Grid.RowSpan="3"
+               Grid.ColumnSpan="2"
+               Source="{Binding Player_A_image}" ></Image>
+        <Image Grid.Column="3"
+                Grid.Row="1"
+                Grid.RowSpan="3"
+                 Grid.ColumnSpan="2"
+                Source="{Binding Player_B_image}"
+                RenderTransformOrigin="0.5,0.5"
+               >
+            <Image.RenderTransform>
+                <ScaleTransform ScaleX="-1"/>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock Grid.Row="5"
+                   Grid.Column="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="{Binding Round}"></TextBlock>
     </Grid>
     
 </UserControl>

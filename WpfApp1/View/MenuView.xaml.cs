@@ -17,14 +17,14 @@ using WpfApp1.ViewModel;
 namespace WpfApp1.View
 {
     /// <summary>
-    /// Logika interakcji dla klasy HomeView.xaml
+    /// Logika interakcji dla klasy MenuView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class MenuView : UserControl
     {
-        public HomeView()
+        public MenuView()
         {
             InitializeComponent();
-            DataContext = new HomeViewModel();
+            DataContext = new MenuViewModel();
         }
     }
 }

@@ -17,22 +17,14 @@
         <DataTemplate DataType="{x:Type viewModel:GameViewModel}">
             <view:GameView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
+            <view:MenuView />
+        </DataTemplate>
     </Window.Resources>
 
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="4*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-
-        </Grid.ColumnDefinitions>
-        <ContentControl Content="{Binding CurrentView}" />
-        <Button Grid.Row="1"
-                Grid.Column="1"
-                Command="{Binding changeView}">Zmiana widoku</Button>
-        
+        <ContentControl Name="contentControl" Content="{Binding CurrentView,Mode=TwoWay}"/>
     </Grid>
 
     <Window.DataContext>

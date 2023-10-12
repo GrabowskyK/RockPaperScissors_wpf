@@ -12,40 +12,36 @@ using WpfApp1.ViewModel.BaseClass;
 
 namespace WpfApp1.ViewModel
 {
-    public class ChangeViewEventArgs : EventArgs
+    class MenuViewModel : BaseViewModel
     {
-        public UserControl NewView { get; }
+        private object currentView;
 
-        public ChangeViewEventArgs(UserControl newView)
+        public MenuViewModel()
         {
-            NewView = newView;
-        }
-    }
-
-    class MainViewModel : BaseViewModel, INotifyPropertyChanged
-    {
-
-
-
-    private object currentView;
-        public MainViewModel()
-        {
-            CurrentView = new MenuView();
-           // currentView = new GameView();
-           
-        }
-        private UserControl _currentViewTest;
-        public UserControl CurrentViewTest
-        {
-            get { return _currentViewTest; }
-            set
-            {
-                _currentViewTest = value;
-                OnPropertyChanged(nameof(CurrentView));
-            }
+            ChangeViewToComputerVsComputer = new RelayCommand(changeViewToComputer);
+            ChangeViewToPlayerVsComputer = new RelayCommand(changeViewToPlayer);
         }
 
-        public object CurrentView {
+
+
+        public ICommand ChangeViewToComputerVsComputer { get; set; }
+        public ICommand ChangeViewToPlayerVsComputer { get; set; }
+
+        public void changeViewToComputer(object obj)
+        {
+            CurrentView = new HomeView();
+            OnPropertyChanged(nameof(CurrentView));
+        }
+
+        public void changeViewToPlayer(object obj)
+        {
+            CurrentView = new GameView();
+            OnPropertyChanged(nameof(CurrentView));
+        }
+
+
+        public object CurrentView
+        {
             get
             {
                 return currentView;
@@ -57,11 +53,6 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        private void OnCurrentViewChanged(object newView)
-        {
-            CurrentView = newView;
-        }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -69,9 +60,6 @@ namespace WpfApp1.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
     }
 }
-
 
