@@ -6,16 +6,14 @@
              xmlns:view="clr-namespace:WpfApp1.View"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-            <view:HomeView />
+
+        <DataTemplate DataType="{x:Type viewModel:CompVsCompViewModel}">
+            <view:CompVsCompView />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:GameViewModel}">
-            <view:GameView />
-        </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
-            <view:MenuView />
+        <DataTemplate DataType="{x:Type viewModel:PlayerVsCompViewModel}">
+            <view:PlayerVsCompView />
         </DataTemplate>
     </Application.Resources>
 </Application>

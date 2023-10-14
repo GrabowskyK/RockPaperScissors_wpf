@@ -15,4 +15,10 @@
     <Folder Include="Model\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="View\PlayerVsCompView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

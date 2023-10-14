@@ -11,28 +11,28 @@ using WpfApp1.ViewModel.BaseClass;
 
 namespace WpfApp1.ViewModel
 {
-    class GameViewModel : INotifyPropertyChanged
+    class CompVsCompViewModel : INotifyPropertyChanged
     {
-        private string player_A;
+        private string player_A; //Znak gracza A
         private string player_B;
-        private int round = 0;
-        private int player_A_int;
+        private int round = 0;  //Ilość rund
+        private int player_A_int; // Wylosowana wartość znaku
         private int player_B_int;
-        
-        private string result;
-        private int player_A_points = 0;
+        private string result;  //Kto wygrał daną runde
+        private int player_A_points = 0; //Punkty
         private int player_B_points = 0;
         private string[] images = { @"G:\Studia\Grafika\RPS_Grabowski\WpfApp1\assets\rockBigger.png", @"G:\Studia\Grafika\RPS_Grabowski\WpfApp1\assets\paperBigger.png", @"G:\Studia\Grafika\RPS_Grabowski\WpfApp1\assets\scissorsBigger.png" };
-        private string player_A_Image;
+        private string player_A_Image; //Zdjęcie danego znaku dla gracza
         private string player_B_Image;
-        public GameViewModel()
+
+        public CompVsCompViewModel()
         {
             Play = new RelayCommand(StartGame);
             Player_A_image = @"G:\Studia\Grafika\RPS_Grabowski\WpfApp1\assets\boy.png";
             Player_B_image = @"G:\Studia\Grafika\RPS_Grabowski\WpfApp1\assets\boy.png";
 
         } 
-        public ICommand Play {  get; set; }
+        public ICommand Play {  get; set; } 
 
         public void StartGame(object obj)
         {
@@ -66,7 +66,7 @@ namespace WpfApp1.ViewModel
 
         }
 
-        private string WhatSign(int i) 
+        private string WhatSign(int i) // Służy do wyświetlenia jaki znak wylosowało
         {
             switch (i)
             {
@@ -82,7 +82,7 @@ namespace WpfApp1.ViewModel
             }
             return "null";
         }
-        public string Result
+        public string Result //Jaki gracz wygrał runde
         {
             get { return result; }
             set
@@ -92,7 +92,7 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        public int Round
+        public int Round // Która runda
         {
             get { return round; }
             set
@@ -101,6 +101,17 @@ namespace WpfApp1.ViewModel
                 OnPropertyChanged(nameof(Round));
             }
         }
+
+        public string Player_A
+        {
+            get { return player_A; }
+            set
+            {
+                player_A = value;
+                OnPropertyChanged(nameof(Player_A));
+            }
+        }
+
         public string Player_A_image
         {
             get
@@ -113,15 +124,7 @@ namespace WpfApp1.ViewModel
                 OnPropertyChanged(nameof(Player_A_image));
             }
         }
-        public string Player_A 
-        { 
-            get { return player_A; } 
-            set 
-            { 
-                player_A = value;
-                OnPropertyChanged(nameof(Player_A));
-            }
-        }
+        
 
         public int Player_A_points
         {
@@ -136,6 +139,15 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        public string Player_B
+        {
+            get { return player_B; }
+            set
+            {
+                player_B = value;
+                OnPropertyChanged(nameof(Player_B));
+            }
+        }
         public int Player_B_points
         {
             get
@@ -162,15 +174,7 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        public string Player_B
-        {
-            get { return player_B; }
-            set
-            {
-                player_B = value;
-                OnPropertyChanged(nameof(Player_B));
-            }
-        }
+       
 
 
         public event PropertyChangedEventHandler PropertyChanged;

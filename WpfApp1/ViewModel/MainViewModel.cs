@@ -12,36 +12,63 @@ using WpfApp1.ViewModel.BaseClass;
 
 namespace WpfApp1.ViewModel
 {
-    public class ChangeViewEventArgs : EventArgs
-    {
-        public UserControl NewView { get; }
-
-        public ChangeViewEventArgs(UserControl newView)
-        {
-            NewView = newView;
-        }
-    }
 
     class MainViewModel : BaseViewModel, INotifyPropertyChanged
     {
-
-
-
-    private object currentView;
+        private bool visablePlayerButton;
+        private bool visableCompButton;
+        private object currentView;
         public MainViewModel()
         {
-            CurrentView = new MenuView();
-           // currentView = new GameView();
-           
+            CurrentView = new CompVsCompView();
+            ComputerVsComputerView = new RelayCommand(CompVsComp);
+            PlayerVsComputerView = new RelayCommand(PlayerVsComp);
+            VisablePlayerButton = true;
+            VisableCompButton = false;
+
+
         }
-        private UserControl _currentViewTest;
-        public UserControl CurrentViewTest
+        
+         public ICommand ComputerVsComputerView { get; set; }
+         public ICommand PlayerVsComputerView { get; set; }
+
+        public void CompVsComp(object obj)
         {
-            get { return _currentViewTest; }
+            CurrentView = new CompVsCompView();
+            VisableCompButton = false;
+            VisablePlayerButton = true;
+        }
+
+        public void PlayerVsComp(object obj)
+        {
+            CurrentView = new PlayerVsCompView(); 
+            VisablePlayerButton = false;
+            VisableCompButton = true;
+        }
+
+        public bool VisablePlayerButton
+        {
+            get
+            {
+                return visablePlayerButton;
+            }
             set
             {
-                _currentViewTest = value;
-                OnPropertyChanged(nameof(CurrentView));
+                visablePlayerButton = value;
+                OnPropertyChanged(nameof(VisablePlayerButton));
+            }
+        }
+
+        public bool VisableCompButton
+        {
+            get
+            {
+                return visableCompButton;
+            }
+            set
+            {
+                visableCompButton = value;
+                OnPropertyChanged(nameof(VisableCompButton));
             }
         }
 
@@ -55,11 +82,6 @@ namespace WpfApp1.ViewModel
                 currentView = value;
                 OnPropertyChanged(nameof(CurrentView));
             }
-        }
-
-        private void OnCurrentViewChanged(object newView)
-        {
-            CurrentView = newView;
         }
 
 
